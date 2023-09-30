@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboarding_nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.challenge.onboarding.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <deepLink app:uri="android-app://com.challenge.get.settings/loginFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.challenge.onboarding.createUser.CreateUserFragment"
+        android:label="CreateUserFragment"
+        tools:layout="@layout/fragment_create_user"/>
+
+</navigation>
+
+
