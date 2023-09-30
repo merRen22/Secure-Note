@@ -28,6 +28,7 @@ import com.challenge.get.base.compose.smallPadding
 fun DetailScreen(
     detailViewModel: DetailViewModel,
     onRegisterClick: () -> Unit,
+    onDeleteClick: () -> Unit,
 ) {
     val isLoading = detailViewModel.serviceIsLoading.observeAsState()
 
@@ -94,6 +95,18 @@ fun DetailScreen(
                         "Update note"
                     },
                 )
+            }
+            if (detailViewModel.noteid != 0) {
+                Spacer(modifier = Modifier.height(smallPadding))
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { onDeleteClick() },
+                    shape = RoundedCornerShape(20.dp),
+                ) {
+                    Text(
+                        text = "Delete note",
+                    )
+                }
             }
         }
     }

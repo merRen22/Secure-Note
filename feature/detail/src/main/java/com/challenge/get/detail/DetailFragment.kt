@@ -62,6 +62,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     onRegisterClick = {
                         if (args.noteId != 0) updateNote() else createNote()
                     },
+                    onDeleteClick = {
+                        deleteNote()
+                    },
                 )
             }
         }
@@ -91,6 +94,21 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 }
                 is RequestState.Success -> {
                     Toast.makeText(requireContext(), "Note created", Toast.LENGTH_LONG).show()
+                    moveBack()
+                }
+            }
+        }
+    }
+
+    private fun deleteNote() {
+        detailViewModel.deleteNote().observe(viewLifecycleOwner) { note ->
+            when (note) {
+                is RequestState.Loading -> {}
+                is RequestState.Error -> {
+                    Toast.makeText(requireContext(), note.errorMessage, Toast.LENGTH_LONG).show()
+                }
+                is RequestState.Success -> {
+                    Toast.makeText(requireContext(), note.value, Toast.LENGTH_LONG).show()
                     moveBack()
                 }
             }
