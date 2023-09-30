@@ -1,5 +1,6 @@
 package com.challenge.onboarding.login
 
+import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
 import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.Image
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -137,6 +139,12 @@ fun UserNameInput(
     passwordText: MutableState<String>,
     biometricPrompt: BiometricPrompt,
 ) {
+    val context = LocalContext.current
+    val biometricManager = remember { BiometricManager.from(context) }
+    val isBiometricAvailable = remember {
+        biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)
+    }
+
     val promptInfo = BiometricPrompt.PromptInfo.Builder()
         .setAllowedAuthenticators(BIOMETRIC_WEAK)
         .setTitle("Biometric Authentication")
@@ -166,10 +174,20 @@ fun UserNameInput(
             },
             isPassword = true,
         )
-        TextButton(
-            onClick = { biometricPrompt.authenticate(promptInfo) },
-        ) {
-            Text("Authenticate with Biometrics")
+        if (isBiometricAvailable == 0) {
+            TextButton(
+                onClick = { biometricPrompt.authenticate(promptInfo) },
+            ) {
+                Text("Authenticate with Biometrics")
+            }
+        } else {
+            Text(
+                "Biometric authentication is not available on the device",
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier
+                    .padding(vertical = normalPadding)
+                    .align(Alignment.CenterHorizontally),
+            )
         }
     }
 }

@@ -2,8 +2,8 @@
 
 In this technical test you can create your notes and store them locally. It is super safe as it uses biometric authentication to access the app.
 
-![alt text]()
-![alt text]()
+![alt text](https://raw.githubusercontent.com/merRen22/Secure-Note/main/showcase/login.png)
+![alt text](https://raw.githubusercontent.com/merRen22/Secure-Note/main/showcase/Home.png)
 
 ### Libraries used
 
