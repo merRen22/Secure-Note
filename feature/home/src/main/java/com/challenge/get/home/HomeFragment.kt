@@ -85,6 +85,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.emptySearchMessage.visibility = View.VISIBLE
                 binding.rvNotes.visibility = View.GONE
             } else {
+                binding.rvNotes.visibility = View.VISIBLE
                 binding.emptySearchMessage.visibility = View.GONE
                 noteAdapter.setDataFiltered(notes)
             }
@@ -94,6 +95,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             when (notes) {
                 is RequestState.Loading -> {
                     binding.progressIndicator.visibility = View.VISIBLE
+                    binding.emptySearchMessage.visibility = View.GONE
+                    binding.rvNotes.visibility = View.GONE
                 }
                 is RequestState.Success -> {
                     binding.progressIndicator.visibility = View.GONE
