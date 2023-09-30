@@ -1,6 +1,5 @@
 package com.challenge.onboarding.createUser
 
-import androidx.biometric.BiometricManager
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.challenge.get.base.compose.CustomTextField
 import com.challenge.get.base.compose.extraLargePadding
@@ -31,12 +29,6 @@ fun CreateUserScreen(
 ) {
     val usernameText = remember { mutableStateOf(String()) }
     val passwordText = remember { mutableStateOf(String()) }
-
-    val context = LocalContext.current
-    val biometricManager = remember { BiometricManager.from(context) }
-    val isBiometricAvailable = remember {
-        biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)
-    }
 
     Box(
         modifier = Modifier
