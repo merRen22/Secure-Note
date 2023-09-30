@@ -1,22 +1,16 @@
 package com.challenge.get.detail
 
-import android.content.SharedPreferences
-import android.os.Build
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.challenge.get.base.AppConstants
 import com.challenge.get.base.util.RequestState
 import com.challenge.get.base.util.getCurrentDate
 import com.challenge.get.model.Note
 import com.challenge.get.repository.NoteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.text.SimpleDateFormat
-import java.util.Calendar
 import javax.inject.Inject
 
 /**
@@ -24,7 +18,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val noteRepository: NoteRepository
+    private val noteRepository: NoteRepository,
 ) : ViewModel() {
 
     private val _serviceIsLoading = MutableLiveData(false)
@@ -89,6 +83,19 @@ class DetailViewModel @Inject constructor(
         } catch (e: Exception) {
             emit(
                 RequestState.Error("There was a problem creating the note"),
+            )
+        }
+    }
+
+    fun deleteNote() = liveData(viewModelScope.coroutineContext) {
+        emit(RequestState.Loading)
+        try {
+            noteRepository.deleteNote(noteid)
+
+            emit(RequestState.Success("Note deleted"))
+        } catch (e: Exception) {
+            emit(
+                RequestState.Error("There was a problem deleting the note"),
             )
         }
     }
