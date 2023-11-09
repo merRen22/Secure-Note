@@ -8,9 +8,9 @@ plugins {
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
-    defaultConfig {
-        applicationId = "com.challenge.get"
+    namespace = "com.challenge.get"
 
+    defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
 
@@ -29,13 +29,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     hilt { enableAggregatingTask = true }
 
-    buildFeatures { compose = true }
+    buildFeatures {
+        dataBinding = true
+        compose = true
+        buildConfig = true
+    }
 
     kotlinOptions {
         freeCompilerArgs = freeCompilerArgs + listOf(
@@ -52,8 +56,16 @@ android {
             excludes.add("/META-INF/LICENSE*")
         }
     }
-    buildFeatures {
-        dataBinding = true
+    flavorDimensions += "version"
+    productFlavors {
+        create("dev") {
+            dimension = "version"
+            buildConfigField("String", "BASE_URL", "\"https://survey-api.nimblehq.co/\"")
+        }
+        create("prod") {
+            dimension = "version"
+            buildConfigField("String", "BASE_URL", "\"https://survey-api.nimblehq.co/\"")
+        }
     }
 }
 
@@ -76,10 +88,9 @@ dependencies {
 
     // Security
     implementation(libs.shared.preferences)
+    debugImplementation(libs.leakcanary)
 
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-
-    implementation("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
 }

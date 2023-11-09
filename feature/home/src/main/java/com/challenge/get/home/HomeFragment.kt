@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -109,7 +108,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     }
                 }
                 is RequestState.Error -> {
-                    Toast.makeText(requireContext(), notes.errorMessage, Toast.LENGTH_LONG).show()
+                    // Todo show retry button
                 }
             }
         }

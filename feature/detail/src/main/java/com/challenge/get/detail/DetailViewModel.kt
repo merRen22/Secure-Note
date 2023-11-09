@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.challenge.get.base.AppErrorHandler
 import com.challenge.get.base.util.RequestState
 import com.challenge.get.base.util.getCurrentDate
 import com.challenge.get.model.Note
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val noteRepository: NoteRepository,
+    private val errorHandler: AppErrorHandler,
 ) : ViewModel() {
 
     private val _serviceIsLoading = MutableLiveData(false)
@@ -40,9 +42,8 @@ class DetailViewModel @Inject constructor(
             createdDate = response.creationDate ?: ""
             emit(RequestState.Success(response))
         } catch (e: Exception) {
-            emit(
-                RequestState.Error("There was a problem fetching the note"),
-            )
+            errorHandler.handleError(e, "There was a problem fetching the note")
+            emit(RequestState.Error())
         }
     }
 
@@ -61,9 +62,8 @@ class DetailViewModel @Inject constructor(
 
             emit(RequestState.Success(response))
         } catch (e: Exception) {
-            emit(
-                RequestState.Error("There was a problem updating the note"),
-            )
+            errorHandler.handleError(e, "There was a problem updating the note")
+            emit(RequestState.Error())
         }
     }
 
@@ -81,9 +81,8 @@ class DetailViewModel @Inject constructor(
 
             emit(RequestState.Success(response))
         } catch (e: Exception) {
-            emit(
-                RequestState.Error("There was a problem creating the note"),
-            )
+            errorHandler.handleError(e, "There was a problem creating the note")
+            emit(RequestState.Error())
         }
     }
 
@@ -94,9 +93,8 @@ class DetailViewModel @Inject constructor(
 
             emit(RequestState.Success("Note deleted"))
         } catch (e: Exception) {
-            emit(
-                RequestState.Error("There was a problem deleting the note"),
-            )
+            errorHandler.handleError(e, "There was a problem deleting the note")
+            emit(RequestState.Error())
         }
     }
 }

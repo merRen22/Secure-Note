@@ -1,19 +1,15 @@
 package com.challenge.get.base
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
+import timber.log.Timber
+import javax.inject.Singleton
 
+@Singleton
 class AppErrorHandler(private val context: Context) : ErrorHandler {
 
-    override fun handleError(error: Throwable) {
-        val message = "error: ${error.message}"
+    override fun handleError(error: Throwable, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-        Log.d(TAG, message)
-    }
-
-    companion object {
-
-        private const val TAG = "AppErrorHandler"
+        Timber.e(error)
     }
 }

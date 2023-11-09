@@ -1,21 +1,21 @@
 [versions]
-sdk-compile = "33"
-sdk-target = "33"
+sdk-compile = "34"
+sdk-target = "34"
 sdk-min = "23"
 
-gradle-android = "7.3.1"
+gradle-android = "8.1.3"
 
-hilt = "2.44"
-kotlin = "1.8.10"
+hilt = "2.48"
+kotlin = "1.9.20"
 
-compose = "1.3.0"
+compose = "1.5.4"
 compose-material = "1.0.0"
-compose-compiler = "1.4.2"
+compose-compiler = "1.5.4"
 maps-compose = "2.8.0"
 coil-compose = "2.2.2"
 datastore = "1.0.0"
 
-navigation = "2.5.3"
+navigation = "2.7.5"
 
 biometric = "1.2.0-alpha05"
 
@@ -24,7 +24,7 @@ retrofit-converter =  "0.8.0"
 okhttp = "4.9.0"
 serialization-json = "1.0.1"
 
-room = "2.5.0"
+room = "2.6.0"
 
 shared_preferences = "1.1.0-alpha03"
 
@@ -35,6 +35,8 @@ play-services = "18.1.0"
 material = "1.9.0"
 
 lifecycle = "2.2.0"
+
+timber = "5.0.1"
 
 [libraries]
 ## Android
@@ -85,9 +87,13 @@ datastore-android = { group = "androidx.datastore", name = "datastore-preference
 
 ## security
 shared-preferences = { group = "androidx.security", name = "security-crypto", version.ref = "shared_preferences" }
+leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version = "2.7" }
 
 ## biometric
 biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
+
+## Logs
+logs = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
 [bundles]
 compose = [
@@ -117,6 +123,10 @@ database = [
     "room-Ktx",
     "room-paging",
     "paging",
+]
+
+logs = [
+    "logs"
 ]
 
 [plugins]

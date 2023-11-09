@@ -26,7 +26,7 @@ abstract class NoteDao {
     abstract suspend fun delete(id: Int)
 
     @Update
-    abstract suspend fun update(note: NoteEntity)
+    abstract suspend fun update(note: NoteEntity): Int
 
     @Query("DELETE FROM note")
     abstract suspend fun deleteAllFromUser()
