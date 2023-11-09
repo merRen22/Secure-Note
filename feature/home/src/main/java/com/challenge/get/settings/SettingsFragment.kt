@@ -108,9 +108,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         settingsViewModel.deleteAccount().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is RequestState.Loading -> {}
-                is RequestState.Error -> {
-                    Toast.makeText(requireContext(), response.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                is RequestState.Error -> {}
                 is RequestState.Success -> {
                     Toast.makeText(requireContext(), response.value, Toast.LENGTH_LONG).show()
                     navigateToLogin()
@@ -139,7 +137,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             .build()
 
         if (::navController.isInitialized) {
-            repeat(navController.backQueue.size) {
+            navController.currentBackStack.value.map {
                 navController.popBackStack()
             }.also {
                 navController.navigate(request)

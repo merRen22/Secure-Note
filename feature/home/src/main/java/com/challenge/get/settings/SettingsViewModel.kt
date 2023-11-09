@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.challenge.get.base.AppConstants
+import com.challenge.get.base.AppErrorHandler
 import com.challenge.get.base.util.RequestState
 import com.challenge.get.base.util.getCurrentDate
 import com.challenge.get.model.Note
@@ -14,20 +15,19 @@ import com.challenge.get.repository.NoteRepository
 import com.challenge.get.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import javax.inject.Inject
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences,
     private val userRepository: UserRepository,
     private val noteRepository: NoteRepository,
+    private val errorHandler: AppErrorHandler,
 ) : ViewModel() {
 
     private val _mutableUserDeleted = MutableLiveData(false)
@@ -49,9 +49,8 @@ class SettingsViewModel @Inject constructor(
                 emit(RequestState.Success("Notes added"))
             }
         } catch (e: Exception) {
-            emit(
-                RequestState.Error("There was a problem reading the JSON file"),
-            )
+            errorHandler.handleError(e, "There was a problem reading the JSON file")
+            emit(RequestState.Error())
         }
     }
 

@@ -9,6 +9,8 @@ plugins{
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
+    namespace = "com.challenge.get.detail"
+
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -23,8 +25,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         freeCompilerArgs = freeCompilerArgs + listOf(

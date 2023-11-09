@@ -8,6 +8,8 @@ plugins {
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
+    namespace = "com.challenge.get.base"
+
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
@@ -23,10 +25,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    buildFeatures { compose = true }
+    buildFeatures {
+        compose = true
+    }
     kotlinOptions {
         freeCompilerArgs = freeCompilerArgs + listOf(
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
@@ -45,6 +49,9 @@ dependencies {
     // Dependencies
     // Compose
     implementation(libs.bundles.compose)
+
+    // Logs
+    implementation(libs.bundles.logs)
 
     // Hilt
     implementation(libs.hilt.android)

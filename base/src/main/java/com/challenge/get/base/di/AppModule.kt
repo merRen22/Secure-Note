@@ -1,8 +1,8 @@
 package com.challenge.get.base.di
 
 import android.app.Application
+import android.content.Context
 import com.challenge.get.base.AppErrorHandler
-import com.challenge.get.base.ErrorHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +15,12 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideErrorHandler(context: Application): ErrorHandler {
+    fun provideErrorHandler(context: Application): AppErrorHandler {
         return AppErrorHandler(context)
     }
 
+    @Provides
+    fun provideContext(application: Application): Context {
+        return application.applicationContext
+    }
 }
