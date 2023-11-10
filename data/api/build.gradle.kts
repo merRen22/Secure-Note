@@ -2,14 +2,14 @@ plugins {
     id(libs.plugins.android.library.get().pluginId)
     id(libs.plugins.kotlin.android.get().pluginId)
     kotlin("kapt")
-    id(libs.plugins.kotlin.serialization.get().pluginId)
     id(libs.plugins.hilt.android.get().pluginId)
+    id(libs.plugins.kotlin.serialization.get().pluginId)
 }
 
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
-    namespace = "com.challenge.get.repository"
+    namespace = "com.challenge.get.api"
 
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
@@ -20,8 +20,8 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
             )
         }
     }
@@ -31,24 +31,18 @@ android {
     }
     kotlinOptions {
         freeCompilerArgs = freeCompilerArgs + listOf(
-                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
         )
     }
 }
 
 dependencies {
     implementation(project(":model"))
-    implementation(project(":data:database"))
-    implementation(project(":data:api"))
-
-    // Datastore
-    implementation(libs.datastore.android)
 
     // Hilt
     implementation(libs.hilt.android)
-
-    // Test
-    testImplementation(libs.bundles.test)
-
     kapt(libs.hilt.compiler)
+
+    // network
+    implementation(libs.bundles.network)
 }

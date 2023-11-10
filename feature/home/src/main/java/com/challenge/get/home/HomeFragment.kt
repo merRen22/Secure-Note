@@ -13,7 +13,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.challenge.get.base.AppConstants
 import com.challenge.get.base.compose.ChallengeTheme
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 

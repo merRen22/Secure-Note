@@ -1,4 +1,4 @@
-package com.challenge.get.base.util
+package com.challenge.get.repository.util
 
 sealed class RequestState<out T> {
     data class Success<out T>(val value: T) : RequestState<T>()

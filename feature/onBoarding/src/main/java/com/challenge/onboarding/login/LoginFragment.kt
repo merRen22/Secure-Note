@@ -43,6 +43,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
 
+        binding.also {
+            it.lifecycleOwner = viewLifecycleOwner
+        }
+
         if (loginViewModel.username.isNullOrEmpty()) {
             navigateToRegisterUser()
         }
@@ -52,7 +56,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 LoginScreen(
                     username = loginViewModel.username.toString(),
                     onLoginClick = { username ->
-                        login(username)
+                        //login(username)
+                        loginViewModel.getFromService().observe(viewLifecycleOwner) {a->
+                            println(a)
+                        }
                     },
                     onBiometricAuth = { message ->
                         navigateUsingBiometric(message)

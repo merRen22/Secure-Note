@@ -5,10 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.challenge.get.base.AppErrorHandler
-import com.challenge.get.base.ErrorHandler
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.model.Note
-import com.challenge.get.repository.NoteRepository
+import com.challenge.get.repository.NoteRemoteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,7 +16,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val noteRepository: NoteRepository,
+    private val noteRepository: NoteRemoteRepository,
     private val errorHandler: AppErrorHandler,
 ) : ViewModel() {
 

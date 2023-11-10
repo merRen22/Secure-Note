@@ -8,10 +8,10 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.challenge.get.base.AppConstants
 import com.challenge.get.base.AppErrorHandler
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.base.util.getCurrentDate
 import com.challenge.get.model.Note
-import com.challenge.get.repository.NoteRepository
+import com.challenge.get.repository.NoteRemoteRepository
 import com.challenge.get.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +26,7 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences,
     private val userRepository: UserRepository,
-    private val noteRepository: NoteRepository,
+    private val noteRepository: NoteRemoteRepository,
     private val errorHandler: AppErrorHandler,
 ) : ViewModel() {
 

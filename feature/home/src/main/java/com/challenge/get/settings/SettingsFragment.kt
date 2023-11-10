@@ -19,7 +19,7 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.findNavController
 import com.challenge.get.base.AppConstants
 import com.challenge.get.base.compose.ChallengeTheme
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.home.R
 import com.challenge.get.home.databinding.FragmentSettingsBinding
 import dagger.hilt.android.AndroidEntryPoint
