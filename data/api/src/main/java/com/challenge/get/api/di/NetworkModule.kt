@@ -46,7 +46,7 @@ class NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("https://raw.githubusercontent.com/merRen22/recipes-code-challenge/main/")
+            .baseUrl("http://need-to-be-added.com")
             .addConverterFactory(converterFactory)
             .build()
     }

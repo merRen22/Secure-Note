@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorPalette = darkColorScheme(
+private val darkColorPalette = darkColorScheme(
     primary = Purple200,
     inversePrimary = Purple700,
     secondary = Teal200,
@@ -29,7 +29,7 @@ private val DarkColorPalette = darkColorScheme(
     onSurface = Color.White,
 )
 
-private val LightColorPalette = lightColorScheme(
+private val lightColorPalette = lightColorScheme(
     primary = Purple500,
     inversePrimary = Purple700,
     secondary = Teal200,
@@ -45,16 +45,16 @@ private val LightColorPalette = lightColorScheme(
 fun ChallengeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     androidTheme: Boolean = false,
-    disableDynamicTheming: Boolean = true,
+    disableDynamicTheming: Boolean = false,
     content: @Composable (paddingValues: PaddingValues) -> Unit,
 ) {
     val colorScheme = if (androidTheme) {
-        if (darkTheme) DarkColorPalette else LightColorPalette
+        if (darkTheme) darkColorPalette else lightColorPalette
     } else if (!disableDynamicTheming && supportsDynamicTheming()) {
         val context = LocalContext.current
         if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     } else {
-        if (darkTheme) DarkColorPalette else LightColorPalette
+        if (darkTheme) darkColorPalette else lightColorPalette
     }
 
     Surface(
