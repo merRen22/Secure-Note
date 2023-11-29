@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.challenge.get.base.compose.ChallengeTheme
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.detail.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
