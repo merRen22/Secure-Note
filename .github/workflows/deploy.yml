@@ -29,7 +29,9 @@ jobs:
         run: |
           echo '${{ secrets.UPLOAD_KEYSTORE }}' > upload-keystore.jks
           echo '${{ secrets.KEY_PROPERTIES }}' > key.properties
-          ls
+
+      - name: Print content of repo
+        run: ls -la
 
       - name: Assemble Release Bundle
         run: |
