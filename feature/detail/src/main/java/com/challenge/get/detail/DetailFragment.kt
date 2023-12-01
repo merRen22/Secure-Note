@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.challenge.get.base.compose.ChallengeTheme
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.detail.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -74,9 +74,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         detailViewModel.updateNote().observe(viewLifecycleOwner) { note ->
             when (note) {
                 is RequestState.Loading -> {}
-                is RequestState.Error -> {
-                    Toast.makeText(requireContext(), note.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                is RequestState.Error -> {}
                 is RequestState.Success -> {
                     Toast.makeText(requireContext(), "Note updated", Toast.LENGTH_LONG).show()
                     moveBack()
@@ -89,9 +87,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         detailViewModel.createNote().observe(viewLifecycleOwner) { note ->
             when (note) {
                 is RequestState.Loading -> {}
-                is RequestState.Error -> {
-                    Toast.makeText(requireContext(), note.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                is RequestState.Error -> {}
                 is RequestState.Success -> {
                     Toast.makeText(requireContext(), "Note created", Toast.LENGTH_LONG).show()
                     moveBack()
@@ -104,9 +100,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         detailViewModel.deleteNote().observe(viewLifecycleOwner) { note ->
             when (note) {
                 is RequestState.Loading -> {}
-                is RequestState.Error -> {
-                    Toast.makeText(requireContext(), note.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                is RequestState.Error -> {}
                 is RequestState.Success -> {
                     Toast.makeText(requireContext(), note.value, Toast.LENGTH_LONG).show()
                     moveBack()
@@ -120,7 +114,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             when (note) {
                 is RequestState.Loading -> {}
                 is RequestState.Error -> {
-                    Toast.makeText(requireContext(), note.errorMessage, Toast.LENGTH_LONG).show()
+                    // Todo redirect
                 }
                 is RequestState.Success -> {
                     detailViewModel.title.value = note.value.title

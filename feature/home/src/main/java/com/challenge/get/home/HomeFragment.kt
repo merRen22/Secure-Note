@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.toArgb
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,7 +15,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.challenge.get.base.AppConstants
 import com.challenge.get.base.compose.ChallengeTheme
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -109,7 +110,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     }
                 }
                 is RequestState.Error -> {
-                    Toast.makeText(requireContext(), notes.errorMessage, Toast.LENGTH_LONG).show()
+                    // Todo show retry button
                 }
             }
         }

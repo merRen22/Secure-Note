@@ -9,6 +9,8 @@ plugins {
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
+    namespace = "com.challenge.get.repository"
+
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
@@ -24,8 +26,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         freeCompilerArgs = freeCompilerArgs + listOf(
@@ -37,11 +39,16 @@ android {
 dependencies {
     implementation(project(":model"))
     implementation(project(":data:database"))
+    implementation(project(":data:api"))
 
     // Datastore
     implementation(libs.datastore.android)
 
     // Hilt
     implementation(libs.hilt.android)
+
+    // Test
+    testImplementation(libs.bundles.test)
+
     kapt(libs.hilt.compiler)
 }

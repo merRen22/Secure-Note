@@ -19,7 +19,7 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.findNavController
 import com.challenge.get.base.AppConstants
 import com.challenge.get.base.compose.ChallengeTheme
-import com.challenge.get.base.util.RequestState
+import com.challenge.get.repository.util.RequestState
 import com.challenge.get.home.R
 import com.challenge.get.home.databinding.FragmentSettingsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -108,9 +108,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         settingsViewModel.deleteAccount().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is RequestState.Loading -> {}
-                is RequestState.Error -> {
-                    Toast.makeText(requireContext(), response.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                is RequestState.Error -> {}
                 is RequestState.Success -> {
                     Toast.makeText(requireContext(), response.value, Toast.LENGTH_LONG).show()
                     navigateToLogin()
@@ -139,7 +137,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             .build()
 
         if (::navController.isInitialized) {
-            repeat(navController.backQueue.size) {
+            navController.currentBackStack.value.map {
                 navController.popBackStack()
             }.also {
                 navController.navigate(request)
