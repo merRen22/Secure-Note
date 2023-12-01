@@ -37,7 +37,7 @@ android {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
+                getDefaultProguardFile("proguard-android.txt"),
                 "proguard-rules.pro",
             )
         }
@@ -61,21 +61,8 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get().toString()
     }
     packagingOptions {
-        resources {
-            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-            excludes.add("/META-INF/LICENSE*")
-        }
-    }
-    flavorDimensions += "version"
-    productFlavors {
-        create("dev") {
-            dimension = "version"
-            buildConfigField("String", "BASE_URL", "\"https://survey-api.nimblehq.co/\"")
-        }
-        create("prod") {
-            dimension = "version"
-            buildConfigField("String", "BASE_URL", "\"https://survey-api.nimblehq.co/\"")
-        }
+        resources.excludes += "/META-INF/AL2.0"
+        resources.excludes += "/META-INF/LICENSE*"
     }
 }
 
