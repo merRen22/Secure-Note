@@ -23,9 +23,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlin {
-        jvmToolchain(17)
-    }
     signingConfigs {
         create("release") {
             keyAlias = System.getenv("SIGNING_KEY_ALIAS")
