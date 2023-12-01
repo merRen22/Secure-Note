@@ -5,6 +5,9 @@ on:
   push:
     tags:
         - 'v[0-9]+.[0-9]+.[0-9]+' # Regex to match tags with a X.Y.Z format
+    # For testing
+    branches:
+        - main
 
 jobs:
   build:
