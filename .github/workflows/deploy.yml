@@ -27,12 +27,9 @@ jobs:
       - name: Create android_keystore.jks
         run: echo '${{ secrets.UPLOAD_KEYSTORE }}' > android_keystore.jks
 
-      - name: Build with Gradle
-        run: ./gradlew build
-
       - name: Assemble Release Bundle
         run: |
-          ./gradlew bundleRelease
+          ./gradlew assembleReleaseBundle
 
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json

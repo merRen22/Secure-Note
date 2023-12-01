@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application") //libs.plugins.android.application.get().pluginId
+    id(libs.plugins.android.application.get().pluginId)
     id(libs.plugins.kotlin.android.get().pluginId)
     kotlin("kapt")
     id(libs.plugins.hilt.android.get().pluginId)
