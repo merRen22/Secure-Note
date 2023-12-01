@@ -27,8 +27,8 @@ jobs:
 
       - name: Create android_keystore.jks
         run: |
-          echo '${{ secrets.UPLOAD_KEYSTORE }}' > upload-keystore.jks
-          echo '${{ secrets.KEY_PROPERTIES }}' > key.properties
+          echo '${{ secrets.UPLOAD_KEYSTORE }}' | base64 -d > upload-keystore.jks
+          echo '${{ secrets.KEY_PROPERTIES }}' | base64 -d > key.properties
 
       - name: Print content of repo
         run: ls -la
