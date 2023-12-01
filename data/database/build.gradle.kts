@@ -1,9 +1,9 @@
 plugins {
-    id(libs.plugins.android.library.get().pluginId)
-    id(libs.plugins.kotlin.android.get().pluginId)
-    kotlin("kapt")
-    id(libs.plugins.kotlin.serialization.get().pluginId)
-    id(libs.plugins.hilt.android.get().pluginId)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -41,9 +41,9 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     // database
     implementation(libs.bundles.database)
-    kapt (libs.room.compiler)
+    ksp(libs.room.compiler)
 }

@@ -1,9 +1,9 @@
 plugins {
-    id(libs.plugins.android.library.get().pluginId)
-    id(libs.plugins.kotlin.android.get().pluginId)
-    kotlin("kapt")
-    id(libs.plugins.kotlin.serialization.get().pluginId)
-    id(libs.plugins.hilt.android.get().pluginId)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -50,5 +50,5 @@ dependencies {
     // Test
     testImplementation(libs.bundles.test)
 
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 }
