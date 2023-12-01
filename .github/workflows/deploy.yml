@@ -27,9 +27,9 @@ jobs:
 
       - name: Create android_keystore.jks
         run: |
-          cd app
-          echo '${{ secrets.UPLOAD_KEYSTORE }}' > android_keystore.jks
-          cd ..
+          echo '${{ secrets.UPLOAD_KEYSTORE }}' > upload-keystore.jks
+          echo '${{ secrets.KEY_PROPERTIES }}' > key.properties
+          
 
       - name: Assemble Release Bundle
         run: |

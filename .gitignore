@@ -1,6 +1,7 @@
 *.iml
 .gradle
 *.jks
+key.properties
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -27,3 +28,4 @@ local.properties
 instrumentation_output.txt
 /.idea/compiler.xml
 /.idea/gradle.xml
+
