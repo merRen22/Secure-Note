@@ -30,12 +30,9 @@ jobs:
           echo '${{ secrets.UPLOAD_KEYSTORE }}' | base64 -d > upload-keystore.jks
           echo '${{ secrets.KEY_PROPERTIES }}' | base64 -d > key.properties
 
-      - name: Print content of repo
-        run: ls -la
-
       - name: Assemble Release Bundle
         run: |
-          ./gradlew assembleRelease
+          ./gradlew bundleRelease
 
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
