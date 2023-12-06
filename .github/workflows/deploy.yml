@@ -22,6 +22,23 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Build changelog for beta release
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create changelog folder for beta release
+        if: steps.build_changelog.outcome == 'success'
+        run: mkdir playwhatsnew
+
+      - name: Write changelog for beta release
+        uses: DamianReeves/write-file-action
+        if: steps.build_changelog.outcome == 'success'
+        with:
+          path: playwhatsnew/whatsnew-en-US
+          contents: ${{ steps.build_changelog.outputs.changelog }}
+
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
@@ -48,4 +65,4 @@ jobs:
           packageName: com.challenge.get
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: beta
-          whatsNewDirectory: distribution/
+          whatsNewDirectory: playwhatsnew
