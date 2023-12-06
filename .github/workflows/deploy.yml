@@ -5,6 +5,9 @@ on:
   push:
     tags:
         - 'v[0-9]+.[0-9]+.[0-9]+' # Regex to match tags with a X.Y.Z format
+    # For testing
+    branches:
+        - main
 
 jobs:
   build:
@@ -55,11 +58,11 @@ jobs:
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
 
-      - name: Deploy to Alpha
+      - name: Deploy to Internal Track
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
           packageName: com.challenge.get
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
-          track: alpha
+          track: internal
           whatsNewDirectory: playwhatsnew
