@@ -58,11 +58,11 @@ jobs:
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
 
-      - name: Deploy to Beta
+      - name: Deploy to Alpha
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
           packageName: com.challenge.get
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
-          track: beta
+          track: alpha
           whatsNewDirectory: playwhatsnew
