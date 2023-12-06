@@ -13,7 +13,7 @@ I hereby state, to the best of my knowledge and belief, that I have not programm
 
 The list of permissions required by the app can be found in the `AndroidManifest.xml` file:
 
-https://needfixhere.com
+https://github.com/merRen22/Secure-Note/blob/main/LICENSE
 
 <br/>
 
